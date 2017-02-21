@@ -20,7 +20,7 @@ my.ui <- fluidPage(
   strong("Cost"),
 
   # Include a `textOutput()` output of the calculated `cost`
-  textOutput('calculated cost')
+  textOutput('cost')
 )
 
 # Define a `server` function (with appropriate arguments)
@@ -29,10 +29,9 @@ my.server <- function(input, output) {
   # Assign a reactive `renderText()` function to the outputted `cost`
   # The reactive expression should return the inputed `price` times the `quantity`
   # So it looks nice, paste a "$" in front of it!
-  output$message <- renderText({
-    my.cost <- paste("$", input$price * input$quantity)
+  output$cost <- renderText({
+    my.cost <- paste0('$', input$price * input$quantity)
     return(my.cost)
-    
   })
 
 }
