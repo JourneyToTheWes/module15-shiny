@@ -30,11 +30,12 @@ my.server <- function(input, output) {
   # The reactive expression should return the inputed `price` times the `quantity`
   # So it looks nice, paste a "$" in front of it!
   output$message <- renderText({
-    my.cost <- price * quantity
-    return my.cost
+    my.cost <- paste("$", input$price * input$quantity)
+    return(my.cost)
     
   })
 
 }
 
 # Create a new `shinyApp()` using the above ui and server
+shinyApp(ui = my.ui, server = my.server)
